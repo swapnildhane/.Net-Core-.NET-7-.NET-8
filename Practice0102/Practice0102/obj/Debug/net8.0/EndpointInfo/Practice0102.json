@@ -1,0 +1,107 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Practice0102",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/EmployeeApi/GetEmployeeDetails": {
+      "get": {
+        "tags": [
+          "EmployeeApi"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/EmployeeApi/SaveDetails": {
+      "post": {
+        "tags": [
+          "EmployeeApi"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeeModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EmployeeModel": {
+        "type": "object",
+        "properties": {
+          "sEmpName": {
+            "type": "string",
+            "nullable": true
+          },
+          "sEmpCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "dtDojDt": {
+            "type": "string",
+            "nullable": true
+          },
+          "dept": {
+            "type": "string",
+            "nullable": true
+          },
+          "marriageStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "iDeptId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "iMarriageStatus": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dSalary": {
+            "type": "number",
+            "format": "double"
+          },
+          "dTaxAmount": {
+            "type": "number",
+            "format": "double"
+          },
+          "sAttachment": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "EmployeeApi"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "ContainingType": "Practice0102.Controllers.EmployeeApiController",
+    "Method": "GetEmployeeDetails",
+    "RelativePath": "api/EmployeeApi/GetEmployeeDetails",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Practice0102.Controllers.EmployeeApiController",
+    "Method": "SaveDetails",
+    "RelativePath": "api/EmployeeApi/SaveDetails",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Emp",
+        "Type": "Practice0102.Models.EmployeeModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

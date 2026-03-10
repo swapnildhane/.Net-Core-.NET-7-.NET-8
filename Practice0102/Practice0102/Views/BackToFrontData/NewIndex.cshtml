@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+    var codeFiles = ViewBag.CodeFiles as Dictionary<string, string>;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code Viewer</title>
+</head>
+<body>
+    <h2>Backend Code Files</h2>
+
+    @foreach (var file in codeFiles)
+    {
+        <h3>@file.Key</h3>
+        <textarea rows="20" cols="100">@file.Value</textarea>
+        <hr />
+    }
+</body>
+</html>

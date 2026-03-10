@@ -1,0 +1,404 @@
+﻿@{
+    var EmployeeData = (List<Practice0102.Models.EmployeeModel>)ViewBag.EmployeeDetails;
+    string docFolderUrl = Url.Content("~/Docs/EmployeeDetails/");
+
+}
+
+
+
+<h5>Welcome to Employee Details</h5>
+
+<div class="row">
+    <div class="row mt-3">
+        <div class="col-lg-3">
+            <lable>Employee Name</lable>
+            <input type="text" class="form-control" id="EmplyNm" autocomplete="off"/>
+        </div>
+        <div class="col-lg-3">
+            <lable>Employee Code</lable>
+            <input type="text" class="form-control" id="EmplyCd" autocomplete="off" />
+        </div>
+
+        <div class="col-lg-3">
+            <lable>Date Of Joining</lable>
+            <input type="datetime-local" class="form-control" id="txtDtOfJng" autocomplete="off" />
+        </div>
+        <div class="col-lg-3">
+            <lable>Department</lable>
+            <select id="txtDprtment" class="form-control" autocomplete="off">
+                <option value="0">Select</option>
+                <option value="1">IT</option>
+                <option value="2">Sr Delivery</option>
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <lable>Marritial Status</lable>
+            <select id="txtMrtlSts" class="form-control" autocomplete="off">
+                <option value="0">Select</option>
+                <option value="1">Single</option>
+                <option value="2">Married</option>
+                <option value="3">Divorced</option>
+            </select>
+        </div>
+
+        <div class="col-lg-3">
+            <lable>Salary</lable>
+            <input type="number" class="form-control" id="txtSalary" autocomplete="off" />
+        </div>
+        <div class="col-lg-3">
+            <lable>Tax</lable>
+            <input type="text" class="form-control" id="txtTaxAmount" readonly />
+        </div>
+        <div class="col-sm-3 m-b30">
+            <label><strong>Attachment</strong> </label>
+            <div class="input-group mb-3  input-info">
+                <input type="file" class="form-control" id="txtFileCopy" onchange="UploadFile($(this));">
+                <input type="text" id="txtFileCopyName" hidden>
+                <button class="btn btn-primary" type="button" id="ViewBtn" onclick="viewFile($('#txtFileCopyName').val())" disabled>View</button>
+            </div>
+        </div>
+       
+    </div>
+    <br /><br />
+    <div class="row mt-3">
+        <div class="col-lg-2" style="place-content:end">
+            <button onclick="SaveDetails()" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>Save</button>
+        </div>
+        <div class="col-lg-2" style="place-content:end">
+            <button onclick="calculateTax()" class="btn btn-info btn-sm">Calculate Tax</button>
+        </div>
+        <div class="col-lg-2" style="place-content:end">
+            <button onclick="EmployeeExportToExcel()" class="btn btn-success btn-sm"><i class="fa fa-file-export"></i>Export</button>
+        </div>
+
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="table-responsive">
+        <table class="table table-responsive-md" id="example">
+            <thead>
+            <th>Sr/No</th>
+            <th>Employee Name</th>
+            <th>Employee Code</th>
+            <th>Date Of Joining</th>
+            <th>Department</th>
+            <th>Maritial Status</th>
+            <th>Salary</th>
+            <th hidden>Tax</th>
+            <th>Action</th>
+
+            </thead>
+            <tbody>
+                @{
+                    if (EmployeeData != null && EmployeeData.Count > 0)
+                    {
+                        int i = 1;
+                        foreach (var item in EmployeeData)
+                        {
+                            <tr>
+                                <td>@i</td>
+                                <td>@item.sEmpName</td>
+                                <td>@item.sEmpCode</td>
+                                <td>@item.dtDojDt</td>
+                                <td>@item.Dept</td>
+                                <td>@item.MarriageStatus</td>
+                                <td>@item.dSalary</td>
+                                <td hidden>@item.dTaxAmount</td>
+                                <td><button class="btn btn-success btn-sm" onclick="ShowTax(@item.dSalary)">Show Tax</button>
+                                    <button class="btn btn-primary btn-sm" tooltip="Attachment" type="button" id="ViewBtn" onclick="viewFile('@item.sAttachment')"><i class="fa fa-eye"></i></button>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    }
+                }
+                </tbody>
+        </table>
+
+
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.15/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+@* Date Time Picker *@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+
+
+<script type="text/javascript">
+       
+
+
+
+    //------------------- Save Employee Details 
+    function SaveDetails() {
+        if(FormValidaton()){
+
+            var Content = {
+                sEmpName: $('#EmplyNm').val(),
+                sEmpCode: $('#EmplyCd').val(),
+                dtDojDt: $('#txtDtOfJng').val(),
+                iDeptId: $('#txtDprtment').val(),
+                iMarriageStatus: $('#txtMrtlSts').val(),
+                dSalary: $('#txtSalary').val(),
+                dTaxAmount: $('#txtTaxAmount').val(),
+                sAttachment: $('#txtFileCopyName').val(),
+            }
+            console.log(Content);
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    url: "/Employee/SaveDetails",
+                    dataType: 'json',
+                    type: 'Post',
+                    cache: false,
+                    data: JSON.stringify(Content),
+                    success: function (data) {
+                        console.log(Response);
+                            Swal.fire({
+                            title: "Success",
+                            text: data.message,
+                            icon: "success"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+
+                    },
+                    error: function (d) {
+                        console.log(d);
+                    }
+                });
+            }
+    }
+
+
+
+
+
+
+
+    //---------- tax Calculation 
+    function calculateTax() {
+
+        let salary = $('#txtSalary').val();
+        if(salary == 0)
+        {
+            Swal.fire({
+                title: "Error",
+                text: "Kindly enter the salary first !",
+                icon: "error"
+            });
+            return;
+         }
+        let tax = 0;
+
+        if (salary <= 500000) {
+            tax = salary * 0.04;
+        }
+        else if (salary <= 700000) {
+            tax = (500000 * 0.04) +
+                  ((salary - 500000) * 0.05);
+        }
+        else if (salary <= 1000000) {
+            tax = (500000 * 0.04) +
+                  (200000 * 0.05) +
+                  ((salary - 700000) * 0.07);
+        }
+        else {
+            tax = (500000 * 0.04) +
+                  (200000 * 0.05) +
+                  (300000 * 0.07) +
+                  ((salary - 1000000) * 0.10);
+        }        
+        $('#txtTaxAmount').val(tax);
+        return tax;
+    }
+
+
+    
+
+
+
+
+
+    //---------- Tax Showing 
+    function ShowTax(salary) {
+      
+        let tax = 0;
+
+        if (salary <= 500000) {
+            tax = salary * 0.04;
+        }
+        else if (salary <= 700000) {
+            tax = (500000 * 0.04) +
+                ((salary - 500000) * 0.05);
+        }
+        else if (salary <= 1000000) {
+            tax = (500000 * 0.04) +
+                (200000 * 0.05) +
+                ((salary - 700000) * 0.07);
+        }
+        else {
+            tax = (500000 * 0.04) +
+                (200000 * 0.05) +
+                (300000 * 0.07) +
+                ((salary - 1000000) * 0.10);
+        }
+        console.log(tax);
+        Swal.fire({
+           title: "Tax View",
+           text: "Dear User Tax for Salary "+salary+" Is : "+tax,
+           icon: "success"
+        });
+       // alert("Tax is :"+tax);
+    }
+
+
+
+
+
+
+
+    //------------Export to Excel 
+    function EmployeeExportToExcel() {    
+        window.location.href = '@Url.Action("EmployeeExportToCsv", "Employee")';
+    }
+
+
+
+
+
+
+
+
+    //------------- Form Validation 
+        function FormValidaton() {
+            var content = {
+                EmployeeName: $('#EmplyNm').val(),
+            EmployeeCode: $('#EmplyCd').val(),
+            DateOfJoining: $('#txtDtOfJng').val(),
+            Department: $('#txtDprtment').val(),
+            MarriageStatus: $('#txtMrtlSts').val(),
+            Salary: $('#txtSalary').val(),
+            TaxAmount: $('#txtTaxAmount').val(),
+            Attachment: $('#txtFileCopyName').val(),
+
+            }
+            for (let [key, value] of Object.entries(content)) {
+                if (value === '0' || value === 0 || value.length < 0 || value === '' || value === null) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Error',
+                        text: `Please Fill the ` + key,
+                        showCancelButton: false,
+                    });
+                    return false;
+                    break;
+                }
+            }
+            return true;
+        }
+
+
+
+
+
+
+
+        //------------------------- File Upload
+        function UploadFile(element) {
+            
+            var fileInput = document.getElementById('txtFileCopy'); // Get file input element
+            if (!fileInput.files || fileInput.files.length === 0) {
+                alert("No file selected!"); // Show alert if no file is chosen
+                return;
+            }
+
+            var FormAttachment = fileInput.files[0]; // Get the selected file
+            var GUID = getGUID();
+            var FileName = GUID + '_' + FormAttachment.name;
+            var formData = new FormData(); // Create FormData object
+            formData.append("FormAttachment", FormAttachment);
+            formData.append("GUID", GUID);
+            $.ajax({
+                url: "/Employee/EmployeeFileStore",
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    console.log(response.Message);
+                },
+                error: function (d) {
+                    console.log(d);
+                }
+            });
+            $('#txtFileCopyName').val(FileName);
+            $('#ViewBtn').prop('disabled', false);
+        }
+        function getGUID() {
+            return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+                (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+            );
+        }
+
+
+
+
+
+
+        //------- File View
+        function viewFile(fileUrl) {
+            
+            fileUrl = '@docFolderUrl' + fileUrl;
+            window.open(fileUrl, '_blank');
+        }
+
+
+
+
+
+        
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

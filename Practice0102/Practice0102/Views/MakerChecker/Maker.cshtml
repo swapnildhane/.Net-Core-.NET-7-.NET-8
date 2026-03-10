@@ -1,0 +1,296 @@
+﻿@{
+    var MakerData = (List<Practice0102.Models.MakerCheckerModel>)ViewBag.MakerDetails;
+
+}
+
+
+
+<div class="d-flex justify-content-between align-items-center">
+    <h5>Welcome to Maker Form</h5>
+    <a href="@Url.Action("Login", "MakerChecker")" class="btn btn-danger btn-sm">
+        <i class="fa fa-sign-out-alt"></i> Logout
+    </a>
+    
+</div>
+<div class="row">
+    <div class="row mt-3">
+        <div class="col-lg-3">
+            <lable>Employee Name</lable>
+            <input type="text" class="form-control" id="EmplyNm" autocomplete="off" />
+        </div>
+        <div class="col-lg-3"> 
+            <label>PAN Number</label> 
+            <input type="text" maxlength="10" class="form-control" id="PanNo" name="PanNo" onchange="validatePan()" autocomplete="off" />
+            <span id="panError" style="color:red;font-size:12px;"></span> 
+        </div>
+
+      
+        <div class="col-lg-3">
+            <label>Mobile</label>
+            <input type="text" maxlength="10" class="form-control" id="txtMobileNo" name="MobileNo" onchange="validateMobile()" autocomplete="off" />
+            <span id="mobileError" style="color:red;font-size:12px;"></span> 
+        </div>
+        
+
+        <div class="col-lg-3">
+            <lable>Monthly Income</lable>
+            <input type="number" class="form-control" id="txtMnthlyIncm" autocomplete="off" />
+        </div>
+
+    </div>
+    <div class="row mt-3">
+        <div class="col-lg-3">
+            <lable>Marritial Status</lable>
+            <select id="txtMrtlSts" class="form-control" autocomplete="off">
+                <option value="0">Select</option>
+                <option value="1">Single</option>
+                <option value="2">Married</option>
+                <option value="3">Divorced</option>
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <label>Email</label>
+            <input type="text" class="form-control" id="EmailId" name="EmailId" onchange="validateEmail()" autocomplete="off" />
+            <span id="emailError" style="color:red;font-size:12px;"></span>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="row">
+            <lable>Address</lable>
+            <textarea id="sAdrs"></textarea>
+        </div>
+    </div>
+    <br /><br />
+    <div class="row mt-3">
+        <div class="col-lg-2" style="place-content:end">
+            <button onclick="SaveDetails()" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>Save</button>
+        </div>       
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="row mt-3">
+    <div class="table-responsive">
+        <table class="table table-responsive-md" id="example">
+            <thead style="background-color:aqua">
+            <th>Sr/No</th>
+            <th>Employee Name</th>
+            <th>PAN</th>
+            <th>Mobile</th>
+            <th>Monthly Income</th>
+            <th>Maritial Status</th>
+            <th>Address</th>
+            <th>Status</th>
+
+            </thead>
+            <tbody>
+                @{
+                    if (MakerData != null && MakerData.Count > 0)
+                    {
+                        int i = 1;
+                        foreach (var item in MakerData)
+                        {
+                            <tr>
+                                <td>@i</td>
+                                <td>@item.sEmpName</td>
+                                <td>@item.sPanNo</td>
+                                <td>@item.sMbleNo</td>
+                                <td>@item.dMnthlyIncm</td>
+                                <td>@item.MarriageStatus</td>
+                                <td>@item.sAdrs</td>                               
+                                <td class="badge alert-success">@item.AprvRjctSts</td>                               
+                            </tr>
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        <tr><td>No Data Available</td></tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.15/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+@* Date Time Picker *@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+
+
+<script type="text/javascript">
+
+
+    function validatePan() {
+        const panInput = document.getElementById("PanNo");
+        const panError = document.getElementById("panError");
+        const regex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+
+        if (!regex.test(panInput.value)) {
+            panError.textContent = "Invalid PAN format (e.g., ABCDE1234F)";
+            panInput.classList.add("is-invalid");
+        } else {
+            panError.textContent = "";
+            panInput.classList.remove("is-invalid");
+        }
+    }
+    function validateEmail(){
+        const emailInput = document.getElementById("EmailId");
+        const emailError = document.getElementById("emailError");
+        const regax = /^[A-Z][0-9][.]{1}[A-Z][.]{1}$/;
+        if(!regax.test(emailInput.val)){
+            emailError.textContent = "Invalid Email format (e.g., xyz@gmail.com)";
+            emailInput.classList.add("is-invalid");
+        }else{
+            emailError.textContent = "";
+            emailInput.classList.remove("is-invalid");
+        }
+    }
+
+    function validateMobile() {
+        const mobileInput = document.getElementById("txtMobileNo");
+        const mobileError = document.getElementById("mobileError");
+        const regex = /^[6-9][0-9]{9}$/;
+
+        if (!regex.test(mobileInput.value)) {
+            mobileError.textContent = "Invalid Mobile Number (must be 10 digits starting with 6-9)";
+            mobileInput.classList.add("is-invalid");
+        } else {
+            mobileError.textContent = "";
+            mobileInput.classList.remove("is-invalid");
+        }
+    }
+
+
+
+    function SaveDetails() {
+        if(FormValidaton()){
+
+            var Content = {
+                sEmpName: $('#EmplyNm').val(),
+                sPanNo: $('#PanNo').val(),
+                dMnthlyIncm : $('#txtMnthlyIncm').val(),
+                sMbleNo: $('#txtMobileNo').val(),
+                iMrgSts: $('#txtMrtlSts').val(),
+                sAdrs: $('#sAdrs').val(),
+            }
+            console.log(Content);
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    url: "/MakerChecker/SaveDetails",
+                    dataType: 'json',
+                    type: 'Post',
+                    cache: false,
+                    data: JSON.stringify(Content),
+                    success: function (data) {
+                        console.log(Response);
+                            Swal.fire({
+                            title: "Success",
+                            text: data.message,
+                            icon: "success"
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+
+                    },
+                    error: function (d) {
+                        console.log(d);
+                    }
+                });
+            }
+    }
+
+
+
+    //------------- Form Validation
+        function FormValidaton() {
+            var content = {
+                EmpName: $('#EmplyNm').val(),
+                PanNo: $('#PanNo').val(),
+                MonthlyIncome : $('#txtMnthlyIncm').val(),
+                MobileNo: $('#txtMobileNo').val(),
+                MarriageStatus: $('#txtMrtlSts').val(),
+                Address: $('#sAdrs').val(),
+
+            }
+            for (let [key, value] of Object.entries(content)) {
+                if (value === '0' || value === 0 || value.length < 0 || value === '' || value === null) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Error',
+                        text: `Please Fill the ` + key,
+                        showCancelButton: false,
+                    });
+                    return false;
+                    break;
+                }
+            }
+            return true;
+        }
+
+
+
+
+
+
+
+       
+
+
+
+
+
+       
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

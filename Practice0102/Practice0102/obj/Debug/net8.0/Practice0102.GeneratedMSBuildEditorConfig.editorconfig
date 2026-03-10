@@ -1,0 +1,81 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Practice0102
+build_property.RootNamespace = Practice0102
+build_property.ProjectDir = C:\Users\swapn.SWAPNIL\source\repos\Practice0102\Practice0102\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\swapn.SWAPNIL\source\repos\Practice0102\Practice0102
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/swapn.SWAPNIL/source/repos/Practice0102/Practice0102/Views/BackToFrontData/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFja1RvRnJvbnREYXRhXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/swapn.SWAPNIL/source/repos/Practice0102/Practice0102/Views/BackToFrontData/NewIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmFja1RvRnJvbnREYXRhXE5ld0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/swapn.SWAPNIL/source/repos/Practice0102/Practice0102/Views/Employee/EmployeeDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcRW1wbG95ZWVEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/swapn.SWAPNIL/source/repos/Practice0102/Practice0102/Views/Employee/Login_User.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcTG9naW5fVXNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/swapn.SWAPNIL/source/repos/Practice0102/Practice0102/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/swapn.SWAPNIL/source/repos/Practice0102/Practice0102/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/swapn.SWAPNIL/source/repos/Practice0102/Practice0102/Views/MakerChecker/Checker.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFrZXJDaGVja2VyXENoZWNrZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/swapn.SWAPNIL/source/repos/Practice0102/Practice0102/Views/MakerChecker/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFrZXJDaGVja2VyXExvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/swapn.SWAPNIL/source/repos/Practice0102/Practice0102/Views/MakerChecker/Maker.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFrZXJDaGVja2VyXE1ha2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/swapn.SWAPNIL/source/repos/Practice0102/Practice0102/Views/MakerChecker/_CheckerGridRows.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFrZXJDaGVja2VyXF9DaGVja2VyR3JpZFJvd3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/swapn.SWAPNIL/source/repos/Practice0102/Practice0102/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/swapn.SWAPNIL/source/repos/Practice0102/Practice0102/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/swapn.SWAPNIL/source/repos/Practice0102/Practice0102/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/swapn.SWAPNIL/source/repos/Practice0102/Practice0102/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/swapn.SWAPNIL/source/repos/Practice0102/Practice0102/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-qnuzvgcf30

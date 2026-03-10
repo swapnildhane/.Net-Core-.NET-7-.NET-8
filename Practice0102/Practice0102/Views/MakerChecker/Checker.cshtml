@@ -1,0 +1,137 @@
+﻿@{
+    var CheckerData = (List<Practice0102.Models.MakerCheckerModel>)ViewBag.CheckerDetails;
+}
+
+<div class="d-flex justify-content-between align-items-center">
+    <h5>Welcome to Checker Form</h5>
+    <a href="@Url.Action("Login", "MakerChecker")" class="btn btn-danger btn-sm">
+        <i class="fa fa-sign-out-alt"></i> Logout
+    </a>
+</div>
+<br />
+
+<br/>
+<div class="row mb-3">
+    <div class="col-lg-3">
+        <label>Employee Name</label>
+        <input type="text" id="searchEmpName" class="form-control" autocomplete="off" />
+    </div>
+    <div class="col-lg-3">
+        <label>From Date</label>
+        <input type="datetime-local" id="searchFromDate" class="form-control" />
+    </div>
+    <div class="col-lg-3">
+        <label>To Date</label>
+        <input type="datetime-local" id="searchToDate" class="form-control" />
+    </div>
+    <div class="col-lg-3" style="place-content:end">
+        <button onclick="SearchCheckerData()" class="btn btn-primary btn-sm">
+            <i class="fa fa-search"></i> Search
+        </button>
+    </div>
+</div>
+<div class="row mb-3">
+<div class="table-responsive">
+    <table class="table table-responsive-md" id="checkerTable">
+        <thead style="background-color:aqua">
+            <tr>
+                <th>Sr/No</th>
+                <th>Employee Name</th>
+                <th>PAN</th>
+                <th>Mobile</th>
+                <th>Monthly Income</th>
+                <th>Marital Status</th>
+                <th>Address</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                if (CheckerData != null && CheckerData.Count > 0)
+                {
+                    int i = 1;
+                    foreach (var item in CheckerData)
+                    {
+                        <tr>
+                            <td>@i</td>
+                            <td>@item.sEmpName</td>
+                            <td>@item.sPanNo</td>
+                            <td>@item.sMbleNo</td>
+                            <td>@item.dMnthlyIncm</td>
+                            <td>@item.MarriageStatus</td>
+                            <td>@item.sAdrs</td>
+                            <td>
+                                <button class="btn btn-success btn-sm" onclick="UpdateStatus('@item.iPk_MakerId',1)">
+                                    <i class="fa fa-check"></i> Approve
+                                </button>
+                                <button class="btn btn-danger btn-sm" onclick="UpdateStatus('@item.iPk_MakerId',2)">
+                                    <i class="fa fa-times"></i> Reject
+                                </button>
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                }
+                else
+                {
+                    <tr><td colspan="9">No Data Available</td></tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.6.15/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+@* Date Time Picker *@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+<script type="text/javascript">
+    
+    function SearchCheckerData() {
+        var empName = $('#searchEmpName').val();
+        var fromDate = $('#searchFromDate').val();
+        var toDate = $('#searchToDate').val();
+
+        $.ajax({
+            url: "/MakerChecker/SearchData",
+            type: "POST",
+            data: { empName: empName, fromDate: fromDate, toDate: toDate },
+            success: function (data) {
+                $('#checkerTable tbody').html(data); 
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+
+    
+    function UpdateStatus(id, action) {
+        $.ajax({
+            url: "/MakerChecker/UpdateStatus",
+            type: "POST",
+            data: { id: id, action: action },
+            success: function (data) {
+                Swal.fire({
+                    title: "Success",
+                    text: data.message,
+                    icon: "success"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.reload();
+                    }
+                });
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    }
+</script>
