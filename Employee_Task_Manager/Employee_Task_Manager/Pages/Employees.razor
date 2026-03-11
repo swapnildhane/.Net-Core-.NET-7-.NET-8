@@ -1,0 +1,43 @@
+﻿@page "/employees"
+@inject EmployeeService service
+@using Employee_Task_Manager.Model
+<h3>Employee List</h3>
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var emp in employees)
+    {
+        <tr>
+            <td>@emp.name</td>
+            <td>@emp.Department</td>
+            <td>@emp.Salary</td>
+            <td>
+                <button @onclick="@(() => Delete(emp.Id))">Delete</button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+@code {
+
+    List<Employee> employees = new();
+
+    protected override void OnInitialized()
+    {
+        employees = service.GetEmployees();
+    }
+
+    void Delete(int id)
+    {
+        service.DeleteEmployee(id);
+        employees = service.GetEmployees();
+    }
+
+}

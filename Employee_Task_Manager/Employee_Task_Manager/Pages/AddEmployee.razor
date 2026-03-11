@@ -1,0 +1,31 @@
+﻿@page "/addemployee"
+@inject EmployeeService service
+@using Employee_Task_Manager.Model
+<h3>Add Employee</h3>
+
+<div>
+    Name:
+    <input @bind="employee.name" />
+</div>
+
+<div>
+    Department:
+    <input @bind="employee.Department" />
+</div>
+
+<div>
+    Salary:
+    <input @bind="employee.Salary" />
+</div>
+
+<button @onclick="SaveEmployee">Save</button>
+
+@code {
+
+    Employee employee = new Employee();
+
+    void SaveEmployee()
+    {
+        service.AddEmployee(employee);
+    }
+}
