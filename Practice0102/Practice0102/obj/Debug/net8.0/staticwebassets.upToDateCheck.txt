@@ -1,11 +1,4 @@
 wwwroot\css\site.css
-wwwroot\Docs\EmployeeDetails\13714fed-8505-4826-baa1-4ed7f91740e3_Screenshot 2026-02-13 163800.png
-wwwroot\Docs\EmployeeDetails\24f44464-cc98-48e3-ae3d-eb42bdd662b2_Screenshot 2026-01-31 114118.png
-wwwroot\Docs\EmployeeDetails\4114095e-206c-4d7e-a6dd-e741a5cc6165_Screenshot 2026-01-31 113137.png
-wwwroot\Docs\EmployeeDetails\5ea895b8-51e3-4bc8-9f32-7d98f8a9f047_Screenshot 2026-02-13 163800.png
-wwwroot\Docs\EmployeeDetails\82f58e05-9455-48ce-be57-d734570c90dc_Screenshot 2026-01-29 094240.png
-wwwroot\Docs\EmployeeDetails\c5a0caca-bb28-430e-b894-0f905c178167_Screenshot 2026-02-13 155549.png
-wwwroot\Docs\EmployeeDetails\fbbf6374-7f6e-4dd8-aa8c-44c0798bf41b_Screenshot 2026-02-13 163800.png
 wwwroot\favicon.ico
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
@@ -65,3 +58,12 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
+wwwroot\Docs\EmployeeDetails\fbbf6374-7f6e-4dd8-aa8c-44c0798bf41b_Screenshot 2026-02-13 163800.png
+wwwroot\Docs\EmployeeDetails\13714fed-8505-4826-baa1-4ed7f91740e3_Screenshot 2026-02-13 163800.png
+wwwroot\Docs\EmployeeDetails\82f58e05-9455-48ce-be57-d734570c90dc_Screenshot 2026-01-29 094240.png
+wwwroot\Docs\EmployeeDetails\c5a0caca-bb28-430e-b894-0f905c178167_Screenshot 2026-02-13 155549.png
+wwwroot\Docs\EmployeeDetails\24f44464-cc98-48e3-ae3d-eb42bdd662b2_Screenshot 2026-01-31 114118.png
+wwwroot\Docs\EmployeeDetails\5ea895b8-51e3-4bc8-9f32-7d98f8a9f047_Screenshot 2026-02-13 163800.png
+wwwroot\Docs\EmployeeDetails\4114095e-206c-4d7e-a6dd-e741a5cc6165_Screenshot 2026-01-31 113137.png
+wwwroot\Docs\EmployeeDetails\b2a26b07-9494-4d8b-ad04-708a37ca53b4_Screenshot 2026-02-11 155358.png
+wwwroot\Docs\EmployeeDetails\730ff996-fb00-4b61-8b5b-8c5402f679d5_Screenshot 2026-02-11 155158.png

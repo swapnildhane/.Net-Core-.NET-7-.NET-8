@@ -200,7 +200,7 @@ namespace Practice0102.Controllers
             DataSet ds = _db.ExecuteDataSet("[dbo].[GetCheckerDetailsforView]");
             if (ds != null && ds.Tables != null && ds.Tables[0].Rows.Count > 0)
             {
-                Response.message = "Maker List";
+                Response.message = "Checker List";
                 Response.statusCode = 200;
                 Response.data = JsonConvert.SerializeObject(ds.Tables[0]);
                 Response.responseCode = 1;

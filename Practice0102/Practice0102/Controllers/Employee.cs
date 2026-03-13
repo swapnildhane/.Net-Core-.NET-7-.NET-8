@@ -37,7 +37,7 @@ namespace Practice0102.Controllers
         {
             try
             {
-                SqlParameter[] param = new SqlParameter[8];
+                SqlParameter[] param = new SqlParameter[9];
                 param[0] = new SqlParameter("@sEmpName", Emp.sEmpName);
                 param[1] = new SqlParameter("@sEmpCode", Emp.sEmpCode);
                 param[2] = new SqlParameter("@dtDojDt", Emp.dtDojDt);
@@ -46,6 +46,7 @@ namespace Practice0102.Controllers
                 param[5] = new SqlParameter("@dSalary", Emp.dSalary);
                 param[6] = new SqlParameter("@dTaxAmount", Emp.dTaxAmount);
                 param[7] = new SqlParameter("@sAttachment", Emp.sAttachment);
+                param[8] = new SqlParameter("@EmpId", Emp.EmpId);
 
                 DataSet ds = _db.ExecuteDataSet("[dbo].[SaveEmployeeDetails]", param);
 

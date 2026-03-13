@@ -62,7 +62,8 @@
     <br /><br />
     <div class="row mt-3">
         <div class="col-lg-2" style="place-content:end">
-            <button onclick="SaveDetails()" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>Save</button>
+            <button onclick="saveUpdateDetails()" id="saveBtn" class="btn btn-primary btn-sm"><i class="fa fa-save"></i>Save</button>
+            <button onclick="saveUpdateDetails()" id="updateBtn" class="btn btn-warning btn-sm"><i class="fa fa-recycle"></i>Update</button>
         </div>
         <div class="col-lg-2" style="place-content:end">
             <button onclick="calculateTax()" class="btn btn-info btn-sm">Calculate Tax</button>
@@ -107,6 +108,7 @@
                                 <td hidden>@item.dTaxAmount</td>
                                 <td><button class="btn btn-success btn-sm" onclick="ShowTax(@item.dSalary)">Show Tax</button>
                                     <button class="btn btn-primary btn-sm" tooltip="Attachment" type="button" id="ViewBtn" onclick="viewFile('@item.sAttachment')"><i class="fa fa-eye"></i></button>
+                                    <button class="btn btn-danger btn-sm" tooltip="Edit" type="button" id="Editbtn" onclick="EditEmployee('@item.EmpId')"><i class="fa fa-edit"></i></button>
                                 </td>
                             </tr>
                             i++;
@@ -135,13 +137,14 @@
 <script type="text/javascript">
        
 
-
-
+    var editId = 0;
+    $('#updateBtn').hide();
     //------------------- Save Employee Details 
-    function SaveDetails() {
+    function saveUpdateDetails() {
         if(FormValidaton()){
 
             var Content = {
+                EmpId: editId,
                 sEmpName: $('#EmplyNm').val(),
                 sEmpCode: $('#EmplyCd').val(),
                 dtDojDt: $('#txtDtOfJng').val(),
@@ -258,7 +261,7 @@
         console.log(tax);
         Swal.fire({
            title: "Tax View",
-           text: "Dear User Tax for Salary "+salary+" Is : "+tax,
+           text: "Dear user tax for salary "+salary+" is : "+tax,
            icon: "success"
         });
        // alert("Tax is :"+tax);
@@ -368,7 +371,34 @@
 
 
 
+        //-------------- Edit Employee
+        function EditEmployee(dID) {
+            var arrayOfArrays = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(EmployeeData));
+            var sortedArray = arrayOfArrays.filter((item) => {
+                if (dID == item.EmpId) {
+                    return item;
+                }
+            });
 
+            // change elements on page
+                $('#saveBtn').hide();
+                $('#updateBtn').show();
+
+
+            // set value for input elements
+
+                $("#EmplyNm").val(sortedArray[0].sEmpName);
+                $("#EmplyCd").val(sortedArray[0].sEmpCode);
+                $("#txtDtOfJng").val(sortedArray[0].joinDate);
+                $("#txtDprtment").val(sortedArray[0].iDeptId);
+                $("#txtDprtment").trigger("change");
+                $("#txtMrtlSts").val(sortedArray[0].iMarriageStatus);
+                $("#txtMrtlSts").trigger("change");
+                $("#txtSalary").val(sortedArray[0].dSalary);
+                $("#txtTaxAmount").val(sortedArray[0].dTaxAmount);
+                $("#txtFileCopyName").val(sortedArray[0].sAttachment);
+            editId = dID;
+    }
 
         
 </script>

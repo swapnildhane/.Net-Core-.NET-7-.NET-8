@@ -7,9 +7,11 @@ namespace Practice0102.Models
 {
     public class EmployeeModel
     {
+        public int EmpId { get; set; }
         public string? sEmpName { get; set; }
         public string? sEmpCode { get; set; }
         public string? dtDojDt { get; set; }
+        public string? joinDate { get; set; }
         public string? Dept { get; set; }
         public string? MarriageStatus { get; set; }
         public int iDeptId { get; set; }
